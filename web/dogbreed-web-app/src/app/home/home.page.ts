@@ -53,8 +53,13 @@ export class HomePage {
         .postPredictor(imageurl)
         .subscribe( data => {
           if (data != null) {
-            console.log(this.myForm.value.imageurl);
-            this.isdatavailable = this.myForm.value.imageurl;
+
+            const reader = new FileReader();
+            reader.readAsDataURL(this.fileToUpload); // toBase64
+            reader.onload = () => {
+                    this.isdatavailable = reader.result as string; // base64 Image src
+                  };
+
             this.process = false;
             this.streamdata = data;
           }
@@ -73,6 +78,7 @@ export class HomePage {
     this.process = false;
     this.streamdata = null;
     this.isdatavailable = null;
+    this.fileToUpload = null;
   }
 
 }

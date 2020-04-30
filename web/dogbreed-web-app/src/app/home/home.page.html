@@ -73,11 +73,12 @@
       </ion-card-header>
       <ion-list>
         <ion-item >
-          <ion-thumbnail slot="start">
-            <ion-img   [src]="isdatavailable"></ion-img>
-          </ion-thumbnail>
+          <ion-img   [src]="isdatavailable"></ion-img>          
+        </ion-item>
+        <ion-item >
           <ion-label>{{streamdata.message}}</ion-label>
         </ion-item>
+        
       </ion-list>
 
       <ion-button color="danger" expand="block" (click)="reset()"  block>Reset</ion-button>
