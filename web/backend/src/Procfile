@@ -1,0 +1,1 @@
+web: gunicorn web.backend.src.wsgi:app

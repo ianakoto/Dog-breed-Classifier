@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="title">
+      Dog Breed Classifer
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+
+  
+ 
+
+
+
+  <div id="container">
+    
+    <ul style="list-style-type:none;">
+      <li> <div class="icon">
+        <ion-icon name="bug-outline"></ion-icon>
+      </div></li>
+      <li><strong>Hey, Give me any picture and i can tell whether it contains a dog or not and predict its breed</strong></li>
+      <li> <strong>If You were a Dog, what type of dog breed would best desribe you? Give me an image of a human and i would tell you</strong> </li>
+
+
+      <li *ngIf="process"> <h5 > Please wait.....................Am thinking</h5> </li>
+   
+    </ul>
+    
+
+   
+  </div>
+
+  
+
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Playground</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      ...................Choose a file and let me Predict...................
+   </ion-card-content>
+
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+      <div>
+        <p [ngClass]="{ 'has-error': isSubmitted && myForm.controls.imageurl.errors }">
+          <ion-input  formControlName="imageurl" type="file" accept="image/*" placeholder="Choose your image" (change)="handleFileInput($event.target.files)"> </ion-input>
+        </p>
+        <div *ngIf="isSubmitted && myForm.controls.imageurl.errors" class="isa_error">
+          <div *ngIf="myForm.controls.imageurl.errors.required"> Select an Image Please</div>
+        </div>
+          
+      </div>
+     
+ 
+     <ion-button expand="block" type="submit" block>Predict</ion-button>
+    </form>
+
+    <div *ngIf="streamdata">
+      <ion-card-header>
+        <ion-card-title>Results</ion-card-title>
+      </ion-card-header>
+      <ion-list>
+        <ion-item >
+          <ion-thumbnail slot="start">
+            <ion-img   [src]="isdatavailable"></ion-img>
+          </ion-thumbnail>
+          <ion-label>{{streamdata.message}}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-button color="danger" expand="block" (click)="reset()"  block>Reset</ion-button>
+    </div>
+
+  </ion-card>
+
+
+  <ion-progress-bar *ngIf="process" type="indeterminate" reversed="true"></ion-progress-bar> 
+
+
+  
+
+
+</ion-content>
