@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title class="title">
-      Dog Breed Classifer(developed by Ian Cecil Mawuli Akoto)
+      Dog Breed Classifer(developed by Ian Cecil Mawuli)
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -73,12 +73,11 @@
       </ion-card-header>
       <ion-list>
         <ion-item >
-          <ion-img   [src]="isdatavailable"></ion-img>          
-        </ion-item>
-        <ion-item >
+          <ion-thumbnail slot="start">
+            <ion-img   [src]="isdatavailable"></ion-img>
+          </ion-thumbnail>
           <ion-label>{{streamdata.message}}</ion-label>
         </ion-item>
-        
       </ion-list>
 
       <ion-button color="danger" expand="block" (click)="reset()"  block>Reset</ion-button>
