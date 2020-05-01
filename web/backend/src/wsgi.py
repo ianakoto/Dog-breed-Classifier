@@ -19,9 +19,11 @@ import matplotlib.pyplot as plt
 import cv2    
 from PIL import Image
 import torch
-import torchvision.models as models
 import torch.nn as nn
-import pandas as pd            
+import pandas as pd    
+
+from vgg_pytorch import VGG
+from resnet_pytorch import ResNet
   
 ############################################### REST API ######################################################### 
 
@@ -89,7 +91,8 @@ if __name__ == '__main__':
 
 
 
-
+# define VGG16 model
+VGG16 = VGG.from_pretrained("vgg16")
 # extract pre-trained face detector
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
@@ -160,16 +163,17 @@ def load_model(path):
     
     """
     # load checkpoint
+    model = VGG16
     checkpoint = torch.load(path,map_location=torch.device('cpu'))
 
-    model = models.resnet50(pretrained=True)
+    
 
 
 
     # define new layer for model
-    input_feat = model.fc.in_features
+    input_feat = model.classifier[6].in_features
     new_layer = nn.Linear(input_feat, 133)
-    model.fc = new_layer
+    model.classifier[6] = new_layer
     
 
         
@@ -192,8 +196,7 @@ def VGG16_predict(img_path):
         Index corresponding to resnet50 model's prediction
     '''
     
-    # define VGG16 model
-    VGG16 = models.vgg16(pretrained=True)
+
     image = Image.open(img_path).convert('RGB')
     # resize to (244, 244) because VGG16 accept this shape
     vgg16_transform = transforms.Compose([
@@ -206,7 +209,7 @@ def VGG16_predict(img_path):
     
 
     
-    
+    VGG16.eval()
     output = VGG16(image)
     
     # Reverse the log function in our output
