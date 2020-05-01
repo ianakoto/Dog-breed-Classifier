@@ -1,1 +1,2 @@
 web: gunicorn web.backend.src.wsgi:app
+heroku ps:scale web=1
