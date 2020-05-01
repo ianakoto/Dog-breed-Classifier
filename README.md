@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Machine Learning Model
 
-A Vgg16 and Resnet50 Pretained model was used for building the model
+A Vgg16  Pretained model was used for building the model
 test accuracy was 86% on dog breed image data
 ```
 download and open the report.hml to get all codes and procedures for building the model
@@ -62,6 +62,7 @@ run pip install -r requirements.txt in the web\backend\src directory to install 
 ```
 navigate to  web\backend\src
 
+
 run flask run to run api
 ```
 
@@ -70,6 +71,8 @@ run flask run to run api
 
 ```
 navigate to  web\dogbreed-web-app\src
+
+navigate into the file env.ts in the app folder and change the value of the API_URL to the running backend url
 
 run ionic serve to run pp
 ```
