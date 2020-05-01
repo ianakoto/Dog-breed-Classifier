@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Machine Learning Model
 
 A Vgg16 and Resnet50 Pretained model was used for building the model
-
+test accuracy was 86% on dog breed image data
 ```
 download and open the report.hml to get all codes and procedures for building the model
 
