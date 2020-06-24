@@ -66,7 +66,7 @@ navigate to  web\backend\src
 run flask run to run api
 ```
 
-### Front end
+### Running Web app
 
 
 ```
